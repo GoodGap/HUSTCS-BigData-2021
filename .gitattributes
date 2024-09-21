@@ -1,0 +1,8 @@
+计算机视觉实验 filter=lfs diff=lfs merge=lfs -text
+计算机通信与网络 filter=lfs diff=lfs merge=lfs -text
+C++程序设计2022年秋 filter=lfs diff=lfs merge=lfs -text
+大数据分析实验 filter=lfs diff=lfs merge=lfs -text
+大数据处理实验 filter=lfs diff=lfs merge=lfs -text
+大数据管理实验 filter=lfs diff=lfs merge=lfs -text
+操作系统课程设计（ChallengeX） filter=lfs diff=lfs merge=lfs -text
+计算机系统基础实验 filter=lfs diff=lfs merge=lfs -text
