@@ -1,0 +1,22 @@
+export PATH=$PATH:/home/gap/RISCVxx/riscv64-elf-gcc/bin
+
+
+make run
+cd /bin
+cd ..
+cd /bin
+app_print_backtrace
+app_errorline
+app_sum_sequence
+app_singlepageheap
+app_semaphore
+app_cow
+./app_pwd
+./app_mkdir /RAMDISK0/sub_dir
+app_touch /RAMDISK0/sub_dir/ramfile1
+./app_touch /RAMDISK0/sub_dir/ramfile2
+app_echo /RAMDISK0/sub_dir/ramfile1
+./app_cat ../RAMDISK0/sub_dir/ramfile1
+/bin/app_ls ../RAMDISK0/sub_dir
+/bin/app_ls /RAMDISK0
+
