@@ -1,0 +1,9 @@
+ 请给出ER图文件存放的URL:
+https://gitee.com/GOODGAP/database/raw/master/QQ%E5%9B%BE%E7%89%8720230530124437.jpg    //ersolution.jpg
+
+ 以下给出关系模式：
+电影(movie_ID, title, type, runtime, release_date, director, starring)，主码：movie_ID；
+顾客(c_ID, name, phone)，主码：c_ID；
+放映厅(hall_ID, mode, capacity, location)，主码：hall_ID；
+排场(schedule_ID, date, time, price, number)，主码：schedule_ID；
+电影票(ticket_ID, seat_num, movie_ID, phone)，主码：ticket_ID，外码：movie.movie_ID, customer.phone
