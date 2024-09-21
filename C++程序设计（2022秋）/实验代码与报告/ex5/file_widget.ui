@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>file_widgetClass</class>
+ <widget class="QWidget" name="file_widgetClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>663</width>
+    <height>241</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>文件加载</string>
+  </property>
+  <widget class="QLabel" name="labelStop">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>201</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>请输入站点文件（stops）</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelLine">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>201</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>请输入线路文件（lines）</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ButtonStop">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>20</y>
+     <width>112</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>浏览</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ButtonLine">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>70</y>
+     <width>112</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>浏览</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEditStop">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>20</y>
+     <width>311</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEditLine">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>70</y>
+     <width>311</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ButtonConfirm">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>150</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>确定</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ButtonExit">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>150</y>
+     <width>151</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>取消</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="CheckLabel">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>280</y>
+     <width>231</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>ButtonStop</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>file_widgetClass</receiver>
+   <slot>stop_input()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>445</x>
+     <y>136</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>331</x>
+     <y>210</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ButtonLine</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>file_widgetClass</receiver>
+   <slot>line_input()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>445</x>
+     <y>216</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>331</x>
+     <y>210</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ButtonConfirm</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>file_widgetClass</receiver>
+   <slot>check_file()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>185</x>
+     <y>326</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>331</x>
+     <y>210</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ButtonExit</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>file_widgetClass</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>405</x>
+     <y>326</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>331</x>
+     <y>210</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>stop_input()</slot>
+  <slot>line_input()</slot>
+  <slot>check_file()</slot>
+ </slots>
+</ui>

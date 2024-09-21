@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="Project5">
+    <file>地图.bmp</file>
+  </qresource>
+</RCC>

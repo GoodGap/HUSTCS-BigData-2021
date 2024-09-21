@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Project5Class</class>
+ <widget class="QMainWindow" name="Project5Class">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1045</width>
+    <height>790</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1045</width>
+    <height>790</height>
+   </size>
+  </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>公交转乘</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QGraphicsView" name="graphicsView">
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/Project5/地图.bmp);</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1045</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>文件(F)</string>
+    </property>
+    <addaction name="action_open"/>
+    <addaction name="action_exit"/>
+   </widget>
+   <widget class="QMenu" name="menu_Q">
+    <property name="title">
+     <string>查询(Q)</string>
+    </property>
+    <addaction name="action_min_convert"/>
+    <addaction name="action_min_dist"/>
+    <addaction name="action_search"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_Q"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="action_open">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>读入地图</string>
+   </property>
+  </action>
+  <action name="action_exit">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>退出</string>
+   </property>
+  </action>
+  <action name="action_min_convert">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>最少转乘</string>
+   </property>
+  </action>
+  <action name="action_min_dist">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>最短距离</string>
+   </property>
+  </action>
+  <action name="action_search">
+   <property name="text">
+    <string>查找站点</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="Project5.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>action_open</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>Project5Class</receiver>
+   <slot>load_map()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>522</x>
+     <y>394</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_exit</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>Project5Class</receiver>
+   <slot>close_window()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>522</x>
+     <y>394</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_min_convert</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>Project5Class</receiver>
+   <slot>min_convert()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>522</x>
+     <y>394</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_min_dist</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>Project5Class</receiver>
+   <slot>min_dist()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>522</x>
+     <y>394</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_search</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>Project5Class</receiver>
+   <slot>search_stop()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>522</x>
+     <y>394</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>load_map()</slot>
+  <slot>min_convert()</slot>
+  <slot>min_dist()</slot>
+  <slot>close_window()</slot>
+  <slot>search_stop()</slot>
+ </slots>
+</ui>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>search_widgetClass</class>
+ <widget class="QWidget" name="search_widgetClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>740</width>
+    <height>154</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>查找站点</string>
+  </property>
+  <widget class="QTextEdit" name="text_search">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>30</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>351</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;请输入查找站点名&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;（支持模糊搜索）：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_set_start">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>90</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>设为起点</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_exit">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>90</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>取消</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_set_end">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>90</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>设为终点</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>button_set_start</sender>
+   <signal>clicked()</signal>
+   <receiver>search_widgetClass</receiver>
+   <slot>set_start()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>200</x>
+     <y>190</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>330</x>
+     <y>128</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_exit</sender>
+   <signal>clicked()</signal>
+   <receiver>search_widgetClass</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>450</x>
+     <y>190</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>330</x>
+     <y>128</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_set_end</sender>
+   <signal>clicked()</signal>
+   <receiver>search_widgetClass</receiver>
+   <slot>set_end()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>340</x>
+     <y>200</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>369</x>
+     <y>128</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>search()</slot>
+  <slot>exit()</slot>
+  <slot>set_start()</slot>
+  <slot>set_end()</slot>
+ </slots>
+</ui>
