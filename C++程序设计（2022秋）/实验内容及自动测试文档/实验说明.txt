@@ -1,0 +1,16 @@
+实验一到实验四可分别使用测试库进行测试，可以观看小电影演示“测试库函数的用法”。实验一至实验四的测试库分别压缩在Test.rar的不同压缩文件中。
+测试时，请将VS2019的编译模式设置为X86模式，在主函数外引用测试库函数的说明如下：
+
+extern const char * TestQueue(int &s);	//用于实验一，可以放在主函数之前
+extern const char * TestQUEUE(int &s);	//用于实验二，可以放在主函数之前
+extern const char * TestSTACK(int &s);	//用于实验三，可以放在主函数之前
+
+template MAT<int>;			//用于实验四，必须放在模板定义文件的尾部，用于强制实例化
+template MAT<long long>;		//用于实验四，必须放在模板定义文件的尾部，用于强制实例化
+extern const char * TestMAT(int &s);	//用于实验四，可以放在主函数之前
+
+
+调用上述测试函数测试通过，从被s引用的实参得到测试分数100分，返回字符串“Successed！"。
+否则，返回的字符串为出错信息，分数为出错时获得的分数。
+注意每个.pdb文件应该解压后改成Test.pdb文件放在编译生成的.exe同一目录。
+
