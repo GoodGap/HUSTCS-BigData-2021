@@ -378,61 +378,61 @@ order by sub.business_name;
 
 db.review.find().limit(2).skip(6)
 
-![image-20231017212035757](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231017212035757.png)
+![image-20231017212035757](/大数据管理实验/pic/image-20231017212035757.png)
 
 2.
 
 db.business.find({'city':'Las Vegas'}).limit(5)
 
-![image-20231017212538942](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231017212538942.png)
+![image-20231017212538942](/大数据管理实验/pic/image-20231017212538942.png)
 
 3.
 
 db.user.find({'name':'Steve'},{'useful':1,'cool':1}).limit(10)
 
-![image-20231017221852064](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231017221852064.png)
+![image-20231017221852064](/大数据管理实验/pic/image-20231017221852064.png)
 
 4.
 
 db.user.find({'funny':{$in:[66,67,68]}},{'name':1,'funny':1}).limit(20)
 
-![image-20231017222108267](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231017222108267.png)
+![image-20231017222108267](/大数据管理实验/pic/image-20231017222108267.png)
 
 5.
 
 db.user.find({'cool':{$gte:15,$lt:20},'useful':{$gte:50}}).limit(10)
 
-![image-20231017225411057](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231017225411057.png)
+![image-20231017225411057](/大数据管理实验/pic/image-20231017225411057.png)
 
 6.
 
 db.business.aggregate({$group:{_id:'',total:{$sum:1}}})
 
-![image-20231017235817389](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231017235817389.png)
+![image-20231017235817389](/大数据管理实验/pic/image-20231017235817389.png)
 
 db.business.explain("executionStats").count()
 
-![image-20231018103723839](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018103723839.png)
+![image-20231018103723839](/大数据管理实验/pic/image-20231018103723839.png)
 
 7.
 
 db.business.find({'city':{$in:['Westlake','Calgary']}})
 
-![image-20231018104305864](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018104305864.png)
+![image-20231018104305864](/大数据管理实验/pic/image-20231018104305864.png)
 
-![image-20231018104440393](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018104440393.png)
+![image-20231018104440393](/大数据管理实验/pic/image-20231018104440393.png)
 
 8.
 
 db.business.find({'categories':{$size:6}},{'_id':1,'categories':1}).limit(10)
 
-![image-20231018104929478](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018104929478.png)
+![image-20231018104929478](/大数据管理实验/pic/image-20231018104929478.png)
 
 9.
 
 db.business.find({ business_id: "5JucpCfHZltJh5r1JabjDg" }).explain("executionStats")
 
-![image-20231018105236007](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018105236007.png)
+![image-20231018105236007](/大数据管理实验/pic/image-20231018105236007.png)
 
 可以看出使用了COLLSCAN方式（遍历整个集合）
 
@@ -442,13 +442,13 @@ db.business.find({ business_id: "5JucpCfHZltJh5r1JabjDg" }).explain("executionSt
 
 db.business.createIndex({'business_id':1})
 
-![image-20231018112131195](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018112131195.png)
+![image-20231018112131195](/大数据管理实验/pic/image-20231018112131195.png)
 
 再次使用explain查看执行过程：
 
-![image-20231018112451886](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018112451886.png)
+![image-20231018112451886](/大数据管理实验/pic/image-20231018112451886.png)
 
-![image-20231018112518962](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018112518962.png)
+![image-20231018112518962](/大数据管理实验/pic/image-20231018112518962.png)
 
 很明显可以看到时间变短（64ms->0ms），且查询方式变为FETCH，索引名为business_id_1
 
@@ -460,27 +460,27 @@ db.business.aggregate([
 
 {$sort:{'_id': -1}}])
 
-![image-20231018114717948](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018114717948.png)
+![image-20231018114717948](/大数据管理实验/pic/image-20231018114717948.png)
 
 11.
 
 db.review.aggregate([{$limit: 500000}, {$out: "Subreview"}])
 
-![image-20231018123505993](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018123505993.png)
+![image-20231018123505993](/大数据管理实验/pic/image-20231018123505993.png)
 
 db.Subreview.createIndex({'text':'text'})
 
-![image-20231018124624116](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018124624116.png)
+![image-20231018124624116](/大数据管理实验/pic/image-20231018124624116.png)
 
 db.Subreview.createIndex({'useful':1})
 
-![image-20231018124652645](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018124652645.png)
+![image-20231018124652645](/大数据管理实验/pic/image-20231018124652645.png)
 
 db.Subreview.find({'useful':{$gt:9}, '$text':{$search:'delicious'}})
 
-![image-20231018125928000](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018125928000.png)
+![image-20231018125928000](/大数据管理实验/pic/image-20231018125928000.png)
 
-![image-20231018125311411](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018125311411.png)
+![image-20231018125311411](/大数据管理实验/pic/image-20231018125311411.png)
 
 12.
 
@@ -490,7 +490,7 @@ db.Subreview.aggregate([
 {$sort:{_id:-1}} 
 ])
 
-![image-20231018133433884](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018133433884.png)
+![image-20231018133433884](/大数据管理实验/pic/image-20231018133433884.png)
 
 统计结果数量：
 
@@ -503,17 +503,17 @@ db.Subreview.aggregate([
 
 ])
 
-![image-20231018173130083](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018173130083.png)
+![image-20231018173130083](/大数据管理实验/pic/image-20231018173130083.png)
 
 13.
 
 db.business.createIndex({'loc':"2dsphere"})
 
-![image-20231018174024830](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018174024830.png)
+![image-20231018174024830](/大数据管理实验/pic/image-20231018174024830.png)
 
 查询目标商家的坐标：
 
-![image-20231018175008397](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018175008397.png)
+![image-20231018175008397](/大数据管理实验/pic/image-20231018175008397.png)
 
 db.business.find(
 {loc: {$near:{$geometry:{type:"Point", coordinates:[-112.3955963552, 33.4556129678]}, $maxDistance: 100}}}, 
@@ -522,7 +522,7 @@ db.business.find(
 
 )
 
-![image-20231018175618030](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018175618030.png)
+![image-20231018175618030](/大数据管理实验/pic/image-20231018175618030.png)
 
 14.
 
@@ -544,7 +544,7 @@ db.Subreview.aggregate([
 
 ])
 
-![image-20231018185538517](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018185538517.png)
+![image-20231018185538517](/大数据管理实验/pic/image-20231018185538517.png)
 
 15.
 
@@ -592,11 +592,11 @@ return { count: reducedValue.count, stars: reducedValue.stars, avg: avgStars };
 
 )
 
-![image-20231018191345689](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018191345689.png)
+![image-20231018191345689](/大数据管理实验/pic/image-20231018191345689.png)
 
-![image-20231018191407071](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018191407071.png)
+![image-20231018191407071](/大数据管理实验/pic/image-20231018191407071.png)
 
-![image-20231018191642066](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231018191642066.png)
+![image-20231018191642066](/大数据管理实验/pic/image-20231018191642066.png)
 
 
 
@@ -608,35 +608,35 @@ MATCH (city:CityNode)
 RETURN city
 LIMIT 10
 
-![image-20231025092050281](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025092050281.png)
+![image-20231025092050281](/大数据管理实验/pic/image-20231025092050281.png)
 
 2.
 
 MATCH (business:BusinessNode {city:'Ambridge'}
 RETURN business
 
-![image-20231025091959233](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025091959233.png)
+![image-20231025091959233](/大数据管理实验/pic/image-20231025091959233.png)
 
 3.
 
 MATCH (r:ReviewNode {reviewid:'rEITo90tpyKmEfNDp3Ou3A'})-[:Reviewed]->(business:BusinessNode)
 RETURN business
 
-![image-20231025091859571](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025091859571.png)
+![image-20231025091859571](/大数据管理实验/pic/image-20231025091859571.png)
 
 4.
 
 MATCH (user:UserNode)-[:Review]->(:ReviewNode)-[:Reviewed]->(:BusinessNode {businessid:'fyJAqmweGm8VXnpU4CWGNw'})
 RETURN user.name, user.fans
 
-![image-20231025092824071](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025092824071.png)
+![image-20231025092824071](/大数据管理实验/pic/image-20231025092824071.png)
 
 5.
 
 MATCH (:UserNode {userid:'TEtzbpgA2BFBrC0y0sCbfw'})-[:Review]->(:ReviewNode {stars:'5.0'})-[:Reviewed]->(business:BusinessNode)
 RETURN business.name, business.address
 
-![image-20231025183827287](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025183827287.png)
+![image-20231025183827287](/大数据管理实验/pic/image-20231025183827287.png)
 
 6.
 
@@ -645,7 +645,7 @@ RETURN business.name, business.stars, business.address
 ORDER BY business.stars DESC
 LIMIT 15
 
-![image-20231025184139300](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025184139300.png)
+![image-20231025184139300](/大数据管理实验/pic/image-20231025184139300.png)
 
 7.
 
@@ -654,7 +654,7 @@ WHERE tointeger(user.fans)>200
 RETURN user.name, user.fans
 LIMIT 10
 
-![image-20231025184502675](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025184502675.png)
+![image-20231025184502675](/大数据管理实验/pic/image-20231025184502675.png)
 
 8.
 
@@ -666,14 +666,14 @@ RETURN count(c)
 PROFILE MATCH (:BusinessNode {businessid:'tyjquHslrAuF5EUejbPfrw'})-[:IN_CATEGORY]->(c:CategoryNode)
 RETURN count(c)
 
-![image-20231025185752386](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025185752386.png)
+![image-20231025185752386](/大数据管理实验/pic/image-20231025185752386.png)
 
 9.
 
 MATCH (business:BusinessNode {businessid:'tyjquHslrAuF5EUejbPfrw'})-[:IN_CATEGORY]->(c:CategoryNode)
 RETURN collect(c.category) as category
 
-![image-20231025190241632](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025190241632.png)
+![image-20231025190241632](/大数据管理实验/pic/image-20231025190241632.png)
 
 10.
 
@@ -681,7 +681,7 @@ MATCH(:UserNode {name:'Allison'})-[:HasFriend]->(friend:UserNode)
 WITH friend.name as friendsList, size((friend) -[:HasFriend]->()) as numofFOFs
 RETURN friendsList, numofFOFs
 
-![image-20231025201709618](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025201709618.png)
+![image-20231025201709618](/大数据管理实验/pic/image-20231025201709618.png)
 
 11.
 
@@ -691,7 +691,7 @@ RETURN city, count
 ORDER BY count DESC
 LIMIT 5
 
-![image-20231025202932077](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025202932077.png)
+![image-20231025202932077](/大数据管理实验/pic/image-20231025202932077.png)
 
 12.
 
@@ -701,7 +701,7 @@ RETURN name, cnt
 ORDER BY cnt DESC
 LIMIT 10
 
-![image-20231025203404861](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025203404861.png)
+![image-20231025203404861](/大数据管理实验/pic/image-20231025203404861.png)
 
 13.
 
@@ -713,7 +713,7 @@ WITH cnt, count(business.name) as subcnt, business.name as name, business.review
 RETURN subcnt*1.0/cnt, name, reviewcount
 ORDER BY reviewcount DESC
 
-![image-20231025205809132](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025205809132.png)
+![image-20231025205809132](/大数据管理实验/pic/image-20231025205809132.png)
 
 14.
 
@@ -722,7 +722,7 @@ WITH business
 MATCH (:ReviewNode {stars:'5.0'})-[:Reviewed]->(business:BusinessNode)
 RETURN distinct business.city
 
-![image-20231025210313616](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025210313616.png)
+![image-20231025210313616](/大数据管理实验/pic/image-20231025210313616.png)
 
 15.
 
@@ -732,7 +732,7 @@ RETURN business.businessid, business.name, user_count
 ORDER BY user_count DESC
 LIMIT 10
 
-![image-20231025211214968](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025211214968.png)
+![image-20231025211214968](/大数据管理实验/pic/image-20231025211214968.png)
 
 16.
 
@@ -742,9 +742,9 @@ MATCH (user:UserNode)
 
 SET user.flag = user.fans
 
-![image-20231025213800122](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025213800122.png)
+![image-20231025213800122](/大数据管理实验/pic/image-20231025213800122.png)
 
-![image-20231025214047059](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025214047059.png)
+![image-20231025214047059](/大数据管理实验/pic/image-20231025214047059.png)
 
 由于服务器内存不够而报错。因此需要对属性作用的范围做出一定的限定，例如fans大于400，于是属性创建完成
 
@@ -754,7 +754,7 @@ WHERE toInteger(user.fans) > 400
 
 SET user.flag = user.fans
 
-![image-20231025214918792](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025214918792.png)
+![image-20231025214918792](/大数据管理实验/pic/image-20231025214918792.png)
 
 对UserNode的flag属性执行查询（flag>8000）、创建（flag=10000）、更新（flag=456 to flag=3456）、删除（flag>4000）操作
 
@@ -764,9 +764,9 @@ MATCH (user:UserNode)
 WHERE toInteger(user.flag) > 8000
 RETURN user
 
-![image-20231025230046863](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025230046863.png)
+![image-20231025230046863](/大数据管理实验/pic/image-20231025230046863.png)
 
-![image-20231102170214835](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231102170214835.png)
+![image-20231102170214835](/大数据管理实验/pic/image-20231102170214835.png)
 
 创建：
 
@@ -774,7 +774,7 @@ MATCH (user:UserNode)
 WHERE toInteger(user.fans) = 198
 SET user.flag = 10000
 
-![image-20231025233446736](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025233446736.png)
+![image-20231025233446736](/大数据管理实验/pic/image-20231025233446736.png)
 
 更新：
 
@@ -782,7 +782,7 @@ MATCH (user:UserNode)
 WHERE toInteger(user.flag) = 456
 SET user.flag = 3456
 
-![image-20231025233749166](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025233749166.png)
+![image-20231025233749166](/大数据管理实验/pic/image-20231025233749166.png)
 
 删除：
 
@@ -790,7 +790,7 @@ MATCH (user:UserNode)
 WHERE user.flag > 4000
 REMOVE user.flag
 
-![image-20231025233836760](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025233836760.png)
+![image-20231025233836760](/大数据管理实验/pic/image-20231025233836760.png)
 
 
 
@@ -798,25 +798,25 @@ REMOVE user.flag
 
 CREATE INDEX FOR (user:UserNode) ON (user.flag)
 
-![image-20231025232431232](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025232431232.png)
+![image-20231025232431232](/大数据管理实验/pic/image-20231025232431232.png)
 
 对UserNode的flag属性执行相同的查询、创建、更新、删除操作，比较操作时间
 
 查询：
 
-![image-20231025232509864](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025232509864.png)
+![image-20231025232509864](/大数据管理实验/pic/image-20231025232509864.png)
 
 创建：
 
-![image-20231025231914030](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025231914030.png)
+![image-20231025231914030](/大数据管理实验/pic/image-20231025231914030.png)
 
 更新：
 
-![image-20231025230254661](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025230254661.png)
+![image-20231025230254661](/大数据管理实验/pic/image-20231025230254661.png)
 
 删除：
 
-![image-20231025232209484](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025232209484.png)
+![image-20231025232209484](/大数据管理实验/pic/image-20231025232209484.png)
 
 17.
 
@@ -828,11 +828,9 @@ WITH user1, user2, COUNT(DISTINCT b) AS num
 RETURN user1.name, user2.name, num
 ORDER BY num DESC
 
-![image-20231101214119756](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231101214119756.png)
+![image-20231101214119756](/大数据管理实验/pic/image-20231101214119756.png)
 
-![17前](C:\Users\xiaoy\Downloads\17前.svg)
-
-![image-20231103180956214](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231103180956214.png)
+![image-20231103180956214](/大数据管理实验/pic/image-20231103180956214.png)
 
 优化：
 
@@ -842,9 +840,9 @@ CREATE INDEX FOR (user:UserNode) ON (user.userid)
 
 CREATE INDEX FOR (b:BusinessNode) ON (b.businessid)
 
-![image-20231026104943498](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231026104943498.png)
+![image-20231026104943498](/大数据管理实验/pic/image-20231026104943498.png)
 
-![image-20231026105003274](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231026105003274.png)
+![image-20231026105003274](/大数据管理实验/pic/image-20231026105003274.png)
 
 然后将上面的COLLECT函数改为仅对business.businessid聚合，减少内存开销
 
@@ -856,9 +854,7 @@ WITH user1, user2, COUNT(DISTINCT b) AS num
 RETURN user1.name, user2.name, num
 ORDER BY num DESC
 
-![image-20231026105037693](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231026105037693.png)
-
-![17后](C:\Users\xiaoy\Downloads\17后.svg)
+![image-20231026105037693](/大数据管理实验/pic/image-20231026105037693.png)
 
 18.
 
@@ -867,7 +863,7 @@ Neo4j查询：
 MATCH (:ReviewNode {reviewid:'TIYgnDzezfeEnVeu9jHeEw'})-[:Reviewed]->(business:BusinessNode)
 RETURN business
 
-![image-20231026105836418](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231026105836418.png)
+![image-20231026105836418](/大数据管理实验/pic/image-20231026105836418.png)
 
 MongoDB查询：
 
@@ -875,7 +871,7 @@ var bid=db.review.findOne({"review_id":"TIYgnDzezfeEnVeu9jHeEw"}).business_id
 
 db.business.findOne({"business_id":bid})
 
-![image-20231026131856916](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231026131856916.png)
+![image-20231026131856916](/大数据管理实验/pic/image-20231026131856916.png)
 
 MongoDB查询所用时间略大于Neo4j，据此可以指出Neo4j和MongoDB主要的适用场景。
 
@@ -894,7 +890,7 @@ WITH user, COUNT(distinct business) as count
 WHERE count>5
 RETURN user.name, user.funny, user.fans, count
 
-![image-20231027104209119](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027104209119.png)
+![image-20231027104209119](/大数据管理实验/pic/image-20231027104209119.png)
 
 2.
 
@@ -906,25 +902,25 @@ RETURN user.name, user.funny, user.fans, count
 
 C:\GAP\大数据管理实验>scp ./export.csv root@1.94.55.43:/root/
 
-![image-20231027111809504](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027111809504.png)
+![image-20231027111809504](/大数据管理实验/pic/image-20231027111809504.png)
 
-![image-20231027112602398](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027112602398.png)
+![image-20231027112602398](/大数据管理实验/pic/image-20231027112602398.png)
 
 然后启动mongo，选择yelp数据库，创建一个新的集合from_neo4j
 
 db.createCollection("from_neo4j")
 
-![image-20231027112818916](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027112818916.png)
+![image-20231027112818916](/大数据管理实验/pic/image-20231027112818916.png)
 
 使用show collections查看当前集合：
 
-![image-20231027112909900](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027112909900.png)
+![image-20231027112909900](/大数据管理实验/pic/image-20231027112909900.png)
 
 退出mongoDB，回到主目录，把数据导入到mongoDB中yelp数据集的from_neo4j集合中。
 
 mongoimport -d=yelp -c=from_neo4j --type=csv --headerline ./export.csv
 
-![image-20231027113553823](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027113553823.png)
+![image-20231027113553823](/大数据管理实验/pic/image-20231027113553823.png)
 
 3）统计其中所有出现的用户名及该用户名对应的出现次数，并按照出现次数降序排序。
 
@@ -933,28 +929,28 @@ db.from_neo4j.aggregate([
 {$sort:{count: -1}}
 ])
 
-![image-20231027115250096](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027115250096.png)
+![image-20231027115250096](/大数据管理实验/pic/image-20231027115250096.png)
 
 3.
 
 MATCH (business:BusinessNode)-[:IN_CATEGORY]->(c:CategoryNode)
 RETURN business.name as name, business.city as city, c.category as category
 
-![image-20231027124011414](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027124011414.png)
+![image-20231027124011414](/大数据管理实验/pic/image-20231027124011414.png)
 
 然后类似于上面第2题的步骤：
 
-![image-20231027125229570](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027125229570.png)
+![image-20231027125229570](/大数据管理实验/pic/image-20231027125229570.png)
 
 db.createCollection("AllBusiness")
 
-![image-20231027153840665](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027153840665.png)
+![image-20231027153840665](/大数据管理实验/pic/image-20231027153840665.png)
 
 退出mongoDB，回到主目录，把数据导入到mongoDB中yelp数据集的AllBusiness集合中。
 
 mongoimport -d=yelp -c=AllBusiness --type=csv --headerline ./AllBusiness.csv
 
-![image-20231027154017746](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027154017746.png)
+![image-20231027154017746](/大数据管理实验/pic/image-20231027154017746.png)
 
 接下来使用aggregate对AllBusiness去重，仅保留城市、商铺类型。首先创建一个集合用于保存结果
 
@@ -964,7 +960,7 @@ db.AllBusiness.aggregate([{ $group: { _id: { city: '$city', category: '$category
 
 查看结果：
 
-![image-20231027154756595](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027154756595.png)
+![image-20231027154756595](/大数据管理实验/pic/image-20231027154756595.png)
 
 将结果导出到服务器主目录下的result.csv中。
 
@@ -983,7 +979,7 @@ MERGE (c:CityNode {city: COALESCE(f.city, "")})
 MERGE (a:CategoryNode {category: COALESCE(f.category, "")})
 CREATE (c) -[:Has]-> (a)
 
-![image-20231027174435812](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027174435812.png)
+![image-20231027174435812](/大数据管理实验/pic/image-20231027174435812.png)
 
 最后查看City-[Has]->Category图谱
 
@@ -992,8 +988,6 @@ MATCH p=()-[r:Has]->()
 RETURN p
 
 LIMIT 20
-
-![graph](C:\Users\xiaoy\Downloads\graph.svg)
 
 
 
@@ -1010,7 +1004,7 @@ mysql -u root -p
 create database testdb;
 use testdb;
 
-![image-20231027210001069](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027210001069.png)
+![image-20231027210001069](/大数据管理实验/pic/image-20231027210001069.png)
 
 在testdb中创建一个新表，设置engine=InnoDB
 
@@ -1037,7 +1031,7 @@ insert into test VALUES(4, 'SLX', 15);
 
 使用select * from test;查看当前表内的数据：
 
-![image-20231027211143032](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231027211143032.png)
+![image-20231027211143032](/大数据管理实验/pic/image-20231027211143032.png)
 
 开始一个事务：
 
@@ -1065,7 +1059,7 @@ update test set flag=99 where id=3; //窗口B
 
 体验 MongoDB 的 MVCC，数据集可自建或选用 yelp 数据集中的 test 集合中进行测试，测试方法同 MySQL。请对测试结果进行说明，并与 MySQL 的 MVCC 实验结果进行对比分析。建议创建 MongoDB 副本或分片集群，体验 MVCC 的不同效果（可选做其一）。
 
-![image-20231030201847235](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030201847235.png)
+![image-20231030201847235](/大数据管理实验/pic/image-20231030201847235.png)
 
 创建三台服务器(test-0001 test-0002 test-0003)，弹性公网ip分别为：
 
@@ -1077,21 +1071,21 @@ update test set flag=99 where id=3; //窗口B
 
 添加入方向和出方向规则，检验是否可以ping通：
 
-![image-20231030173616390](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030173616390.png)
+![image-20231030173616390](/大数据管理实验/pic/image-20231030173616390.png)
 
 三台服务器分别创建数据存放的目录：
 
-![image-20231030202907668](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030202907668.png)
+![image-20231030202907668](/大数据管理实验/pic/image-20231030202907668.png)
 
-![image-20231030203055209](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030203055209.png)
+![image-20231030203055209](/大数据管理实验/pic/image-20231030203055209.png)
 
-![image-20231030203108454](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030203108454.png)
+![image-20231030203108454](/大数据管理实验/pic/image-20231030203108454.png)
 
 分别完成shard1和shard2的replica set配置：
 
-![image-20231030203431445](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030203431445.png)
+![image-20231030203431445](/大数据管理实验/pic/image-20231030203431445.png)
 
-![image-20231030203716412](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030203716412.png)
+![image-20231030203716412](/大数据管理实验/pic/image-20231030203716412.png)
 
 初始化shard1和shard2的replica set：
 
@@ -1111,9 +1105,9 @@ config = { _id: 'shard2', members: [ {_id: 0, host: '60.204.242.167:27018'}, {_i
 
 rs.initiate(config);
 
-![image-20231030203625817](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030203625817.png)
+![image-20231030203625817](/大数据管理实验/pic/image-20231030203625817.png)
 
-![image-20231030203948915](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030203948915.png)
+![image-20231030203948915](/大数据管理实验/pic/image-20231030203948915.png)
 
 配置config server：
 
@@ -1129,7 +1123,7 @@ config = { _id: 'config', members: [ {_id: 0, host: '60.204.242.167:20000'}, {_i
 
 rs.initiate(config);
 
-![image-20231030204306314](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030204306314.png)
+![image-20231030204306314](/大数据管理实验/pic/image-20231030204306314.png)
 
 配置mongos：
 
@@ -1149,11 +1143,11 @@ db.runCommand({addshard:"shard1/60.204.242.167:27017,60.204.228.189:27017,60.204
 
 db.runCommand({addshard:"shard2/60.204.242.167:27018,60.204.228.189:27018,60.204.244.116:27018",name:"s2", maxsize:20480});
 
-![image-20231030190434038](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030190434038.png)
+![image-20231030190434038](/大数据管理实验/pic/image-20231030190434038.png)
 
 （上图为报错，因为addshard字段内严格不允许出现空格）
 
-![image-20231030204648758](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030204648758.png)
+![image-20231030204648758](/大数据管理实验/pic/image-20231030204648758.png)
 
 激活数据库分片：
 
@@ -1161,23 +1155,23 @@ db.runCommand({addshard:"shard2/60.204.242.167:27018,60.204.228.189:27018,60.204
 
 use testdb
 
-![image-20231030191109715](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030191109715.png)
+![image-20231030191109715](/大数据管理实验/pic/image-20231030191109715.png)
 
 激活分片：
 
 sh.enableSharding("testdb")
 
-![image-20231030204801046](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030204801046.png)
+![image-20231030204801046](/大数据管理实验/pic/image-20231030204801046.png)
 
 使用sh.status()查看数据库当前情况：
 
-![image-20231030204830940](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030204830940.png)
+![image-20231030204830940](/大数据管理实验/pic/image-20231030204830940.png)
 
 创建一个新的集合testc：
 
 db.createCollection("testc")
 
-![image-20231030214116931](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030214116931.png)
+![image-20231030214116931](/大数据管理实验/pic/image-20231030214116931.png)
 
 插入一些数据
 
@@ -1188,11 +1182,11 @@ db.testc.insertMany([
   {"_id": 4, "name": "SLX", "age": 15}
 ]);
 
-![image-20231030214328897](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030214328897.png)
+![image-20231030214328897](/大数据管理实验/pic/image-20231030214328897.png)
 
 通过db.testc.find()可以查看当前集合中的数据：
 
-![image-20231030214407097](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030214407097.png)
+![image-20231030214407097](/大数据管理实验/pic/image-20231030214407097.png)
 
 此时打开test-0002服务器进入mongos：
 
@@ -1202,17 +1196,17 @@ mongo 60.204.228.189:30000
 
 db.getSiblingDB("testdb").getCollection("testc").find({});
 
-![image-20231030214912129](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030214912129.png)
+![image-20231030214912129](/大数据管理实验/pic/image-20231030214912129.png)
 
 删除一条数据：
 
 db.getSiblingDB("testdb").getCollection("testc").deleteOne({ _id: 3 })
 
-![image-20231030215102075](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030215102075.png)
+![image-20231030215102075](/大数据管理实验/pic/image-20231030215102075.png)
 
 再回到test-0001服务器，通过db.testc.find()查看当前集合中的数据：
 
-![image-20231030215201365](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231030215201365.png)
+![image-20231030215201365](/大数据管理实验/pic/image-20231030215201365.png)
 
 MySQL和mongoDB的MVCC对比分析：
 
