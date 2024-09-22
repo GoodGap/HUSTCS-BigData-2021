@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/GAP/Networking-Experiment/untitled/build",
+  "command": "C:\\mingw64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\main.dir\\main.cpp.obj -c C:\\GAP\\Networking-Experiment\\untitled\\main.cpp",
+  "file": "C:/GAP/Networking-Experiment/untitled/main.cpp",
+  "output": "CMakeFiles/main.dir/main.cpp.obj"
+}
+]
