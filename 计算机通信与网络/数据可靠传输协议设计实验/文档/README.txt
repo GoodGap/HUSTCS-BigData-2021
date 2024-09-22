@@ -1,0 +1,3 @@
+开发平台：Visual Studio 2017
+编译步骤：“源码”下包含三个文件夹，分别为GBN、SR、TCP协议的代码实现。进入任意一个文件夹后，在Visual Studio 2017中打开StopWaitRdtSender.cpp和StopWaitRdtReceiver.cpp两个文件（分别代表发送方和接收方），并在二者中选择任意一个文件，设置编译选项为Release x86并点击“本地Windows调试器”即可编译，得到的可执行程序名称为相对应的协议名称
+运行说明：以GBN协议为例，将GBN.exe放置于与input.txt同级的目录下，点击GBN.exe即可开始运行。数据传输完成后会在当前目录下生成日志文件log.txt和输出文件GBN_output.txt，观察log.txt是否符合协议实现逻辑，以及GBN_output.txt的内容是否与input.txt一致。若要批量检查传输10次的结果是否均正确，可以使用“源码”文件夹下的check_GBN.bat批处理文件进行快速比对。对于SR和TCP协议，运行步骤同上。
