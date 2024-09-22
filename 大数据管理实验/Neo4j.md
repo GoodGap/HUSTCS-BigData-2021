@@ -4,35 +4,35 @@ MATCH (city:CityNode)
 RETURN city
 LIMIT 10
 
-![image-20231025092050281](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025092050281.png)
+![image-20231025092050281](/大数据管理实验/pic/image-20231025092050281.png)
 
 2.
 
 MATCH (business:BusinessNode {city:'Ambridge'}
 RETURN business
 
-![image-20231025091959233](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025091959233.png)
+![image-20231025091959233](/大数据管理实验/pic/image-20231025091959233.png)
 
 3.
 
 MATCH (r:ReviewNode {reviewid:'rEITo90tpyKmEfNDp3Ou3A'})-[:Reviewed]->(business:BusinessNode)
 RETURN business
 
-![image-20231025091859571](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025091859571.png)
+![image-20231025091859571](/大数据管理实验/pic/image-20231025091859571.png)
 
 4.
 
 MATCH (user:UserNode)-[:Review]->(:ReviewNode)-[:Reviewed]->(:BusinessNode {businessid:'fyJAqmweGm8VXnpU4CWGNw'})
 RETURN user.name, user.fans
 
-![image-20231025092824071](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025092824071.png)
+![image-20231025092824071](/大数据管理实验/pic/image-20231025092824071.png)
 
 5.
 
 MATCH (:UserNode {userid:'TEtzbpgA2BFBrC0y0sCbfw'})-[:Review]->(:ReviewNode {stars:'5.0'})-[:Reviewed]->(business:BusinessNode)
 RETURN business.name, business.address
 
-![image-20231025183827287](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025183827287.png)
+![image-20231025183827287](/大数据管理实验/pic/image-20231025183827287.png)
 
 6.
 
@@ -41,7 +41,7 @@ RETURN business.name, business.stars, business.address
 ORDER BY business.stars DESC
 LIMIT 15
 
-![image-20231025184139300](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025184139300.png)
+![image-20231025184139300](/大数据管理实验/pic/image-20231025184139300.png)
 
 7.
 
@@ -50,7 +50,7 @@ WHERE tointeger(user.fans)>200
 RETURN user.name, user.fans
 LIMIT 10
 
-![image-20231025184502675](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025184502675.png)
+![image-20231025184502675](/大数据管理实验/pic/image-20231025184502675.png)
 
 8.
 
@@ -62,14 +62,14 @@ RETURN count(c)
 PROFILE MATCH (:BusinessNode {businessid:'tyjquHslrAuF5EUejbPfrw'})-[:IN_CATEGORY]->(c:CategoryNode)
 RETURN count(c)
 
-![image-20231025185752386](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025185752386.png)
+![image-20231025185752386](/大数据管理实验/pic/image-20231025185752386.png)
 
 9.
 
 MATCH (business:BusinessNode {businessid:'tyjquHslrAuF5EUejbPfrw'})-[:IN_CATEGORY]->(c:CategoryNode)
 RETURN collect(c.category) as category
 
-![image-20231025190241632](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025190241632.png)
+![image-20231025190241632](/大数据管理实验/pic/image-20231025190241632.png)
 
 10.
 
@@ -77,7 +77,7 @@ MATCH(:UserNode {name:'Allison'})-[:HasFriend]->(friend:UserNode)
 WITH friend.name as friendsList, size((friend) -[:HasFriend]->()) as numofFOFs
 RETURN friendsList, numofFOFs
 
-![image-20231025201709618](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025201709618.png)
+![image-20231025201709618](/大数据管理实验/pic/image-20231025201709618.png)
 
 11.
 
@@ -87,7 +87,7 @@ RETURN city, count
 ORDER BY count DESC
 LIMIT 5
 
-![image-20231025202932077](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025202932077.png)
+![image-20231025202932077](/大数据管理实验/pic/image-20231025202932077.png)
 
 12.
 
@@ -97,7 +97,7 @@ RETURN name, cnt
 ORDER BY cnt DESC
 LIMIT 10
 
-![image-20231025203404861](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025203404861.png)
+![image-20231025203404861](/大数据管理实验/pic/image-20231025203404861.png)
 
 13.
 
@@ -109,7 +109,7 @@ WITH cnt, count(business.name) as subcnt, business.name as name, business.review
 RETURN subcnt*1.0/cnt, name, reviewcount
 ORDER BY reviewcount DESC
 
-![image-20231025205809132](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025205809132.png)
+![image-20231025205809132](/大数据管理实验/pic/image-20231025205809132.png)
 
 14.
 
@@ -118,7 +118,7 @@ WITH business
 MATCH (:ReviewNode {stars:'5.0'})-[:Reviewed]->(business:BusinessNode)
 RETURN distinct business.city
 
-![image-20231025210313616](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025210313616.png)
+![image-20231025210313616](/大数据管理实验/pic/image-20231025210313616.png)
 
 15.
 
@@ -128,7 +128,7 @@ RETURN business.businessid, business.name, user_count
 ORDER BY user_count DESC
 LIMIT 10
 
-![image-20231025211214968](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025211214968.png)
+![image-20231025211214968](/大数据管理实验/pic/image-20231025211214968.png)
 
 16.
 
@@ -138,9 +138,9 @@ MATCH (user:UserNode)
 
 SET user.flag = user.fans
 
-![image-20231025213800122](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025213800122.png)
+![image-20231025213800122](/大数据管理实验/pic/image-20231025213800122.png)
 
-![image-20231025214047059](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025214047059.png)
+![image-20231025214047059](/大数据管理实验/pic/image-20231025214047059.png)
 
 由于服务器内存不够而报错。因此需要对属性作用的范围做出一定的限定，例如fans大于400，于是属性创建完成
 
@@ -150,7 +150,7 @@ WHERE toInteger(user.fans) > 400
 
 SET user.flag = user.fans
 
-![image-20231025214918792](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025214918792.png)
+![image-20231025214918792](/大数据管理实验/pic/image-20231025214918792.png)
 
 对UserNode的flag属性执行查询（flag>8000）、创建（flag=10000）、更新（flag=456 to flag=3456）、删除（flag>4000）操作
 
@@ -160,9 +160,9 @@ MATCH (user:UserNode)
 WHERE toInteger(user.flag) > 8000
 RETURN user
 
-![image-20231025230046863](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025230046863.png)
+![image-20231025230046863](/大数据管理实验/pic/image-20231025230046863.png)
 
-![image-20231102170214835](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231102170214835.png)
+![image-20231102170214835](/大数据管理实验/pic/image-20231102170214835.png)
 
 创建：
 
@@ -170,7 +170,7 @@ MATCH (user:UserNode)
 WHERE toInteger(user.fans) = 198
 SET user.flag = 10000
 
-![image-20231025233446736](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025233446736.png)
+![image-20231025233446736](/大数据管理实验/pic/image-20231025233446736.png)
 
 更新：
 
@@ -178,7 +178,7 @@ MATCH (user:UserNode)
 WHERE toInteger(user.flag) = 456
 SET user.flag = 3456
 
-![image-20231025233749166](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025233749166.png)
+![image-20231025233749166](/大数据管理实验/pic/image-20231025233749166.png)
 
 删除：
 
@@ -186,7 +186,7 @@ MATCH (user:UserNode)
 WHERE user.flag > 4000
 REMOVE user.flag
 
-![image-20231025233836760](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025233836760.png)
+![image-20231025233836760](/大数据管理实验/pic/image-20231025233836760.png)
 
 
 
@@ -194,25 +194,25 @@ REMOVE user.flag
 
 CREATE INDEX FOR (user:UserNode) ON (user.flag)
 
-![image-20231025232431232](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025232431232.png)
+![image-20231025232431232](/大数据管理实验/pic/image-20231025232431232.png)
 
 对UserNode的flag属性执行相同的查询、创建、更新、删除操作，比较操作时间
 
 查询：
 
-![image-20231025232509864](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025232509864.png)
+![image-20231025232509864](/大数据管理实验/pic/image-20231025232509864.png)
 
 创建：
 
-![image-20231025231914030](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025231914030.png)
+![image-20231025231914030](/大数据管理实验/pic/image-20231025231914030.png)
 
 更新：
 
-![image-20231025230254661](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025230254661.png)
+![image-20231025230254661](/大数据管理实验/pic/image-20231025230254661.png)
 
 删除：
 
-![image-20231025232209484](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231025232209484.png)
+![image-20231025232209484](/大数据管理实验/pic/image-20231025232209484.png)
 
 17.
 
@@ -224,11 +224,9 @@ WITH user1, user2, COUNT(DISTINCT b) AS num
 RETURN user1.name, user2.name, num
 ORDER BY num DESC
 
-![image-20231101214119756](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231101214119756.png)
+![image-20231101214119756](/大数据管理实验/pic/image-20231101214119756.png)
 
-![plan](C:\Users\xiaoy\Downloads\plan.svg)
-
-![image-20231103180956214](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231103180956214.png)
+![image-20231103180956214](/大数据管理实验/pic/image-20231103180956214.png)
 
 优化：
 
@@ -238,9 +236,9 @@ CREATE INDEX FOR (user:UserNode) ON (user.userid)
 
 CREATE INDEX FOR (b:BusinessNode) ON (b.businessid)
 
-![image-20231026104943498](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231026104943498.png)
+![image-20231026104943498](/大数据管理实验/pic/image-20231026104943498.png)
 
-![image-20231026105003274](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231026105003274.png)
+![image-20231026105003274](/大数据管理实验/pic/image-20231026105003274.png)
 
 然后将上面的COLLECT函数改为仅对business.businessid聚合，减少内存开销
 
@@ -252,9 +250,7 @@ WITH user1, user2, COUNT(DISTINCT b) AS num
 RETURN user1.name, user2.name, num
 ORDER BY num DESC
 
-![image-20231026105037693](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231026105037693.png)
-
-![plan (1)](C:\Users\xiaoy\Downloads\plan (1).svg)
+![image-20231026105037693](/大数据管理实验/pic/image-20231026105037693.png)
 
 18.
 
@@ -263,7 +259,7 @@ Neo4j查询：
 MATCH (:ReviewNode {reviewid:'TIYgnDzezfeEnVeu9jHeEw'})-[:Reviewed]->(business:BusinessNode)
 RETURN business
 
-![image-20231026105836418](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231026105836418.png)
+![image-20231026105836418](/大数据管理实验/pic/image-20231026105836418.png)
 
 MongoDB查询：
 
@@ -271,7 +267,7 @@ var bid=db.review.findOne({"review_id":"TIYgnDzezfeEnVeu9jHeEw"}).business_id
 
 db.business.findOne({"business_id":bid})
 
-![image-20231026131856916](C:\Users\xiaoy\AppData\Roaming\Typora\typora-user-images\image-20231026131856916.png)
+![image-20231026131856916](/大数据管理实验/pic/image-20231026131856916.png)
 
 MongoDB查询所用时间远大于Neo4j，据此可以指出Neo4j和MongoDB主要的适用场景。
 
