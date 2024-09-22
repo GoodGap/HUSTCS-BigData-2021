@@ -34,5 +34,5 @@
 
 * ✅下载整个文件夹
 ```markdown
-  git clone [https://github.com/AlexFanw/HUSTER-CS.git](https://github.com/GoodGap/HUSTCS-BigData-2021.git)
+  git clone https://github.com/GoodGap/HUSTCS-BigData-2021.git
 ```
